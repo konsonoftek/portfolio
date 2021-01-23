@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { motion } from 'framer-motion';
+import { Element } from 'react-scroll';
+import GlobalStyle from './components/styles/GlobalStyle';
+import { MenuProvider } from './state/Menu';
+import Navigation from "./components/Nav";
+import Title from './components/Title';
+import About from "./components/About";
+import Skills from "./components/Skills";
+import Projects from "./components/Projects";
+import Contact from "./components/Contact";
 
-function App() {
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <motion.div
+      initial={{ opacity:0 }}
+      animate={{ opacity: 1 }}
+    >
+      <GlobalStyle />
+      <MenuProvider>
+        <Navigation />
+      </MenuProvider>
+      <Element name="Home"><Title /></Element>   
+      <Element name="About"><About /></Element> 
+      <Element name="Skills"><Skills /></Element>
+      <Element name="Projects"><Projects /></Element>
+      <Element name="Contact"><Contact /></Element>
+    </motion.div>
+
   );
 }
 
