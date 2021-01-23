@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Profile from '../assets/profile-pic.png'
+import Profile from '../assets/profile.jpg'
 
 const AboutStyles = styled.div`
   height: 100vh;
@@ -15,16 +15,17 @@ const AboutStyles = styled.div`
   }
 `;
 const ProfilePicture = styled.img`
-  width:500px;
+  width:400px;
   height:500px;
   grid-column:2;
   justify-self:flex-start;
+  border-radius:50%;
   
   @media(max-width:1068px){
     grid-row:1;
     grid-column:1;
-    width:330px;
-    height:330px;
+    width:280px;
+    height:340px;
     justify-self:center;
   }
 `;
