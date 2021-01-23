@@ -6,7 +6,8 @@ exports.handler = function(event, context, callback) {
   const data = JSON.parse(event.body);
 
   const transport = nodemailer.createTransport({
-    service: process.env.REACT_APP_EMAIL_SERVICE,
+    host: process.env.REACT_APP_EMAIL_HOST,
+    port: process.env.REACT_APP_EMAIL_PORT,
     auth: {
       user: process.env.REACT_APP_EMAIL_USER,
       pass: process.env.REACT_APP_EMAIL_PASS
