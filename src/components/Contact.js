@@ -89,7 +89,7 @@ const Contact = () => {
       subject: data.subject,
       message: data.message
     }
-      emailjs.send('gmail', 'template_f6onltg', templateParams, 'user_C8s5kqzohKIEtX9F9viGX')
+      emailjs.send('gmail', 'template_f6onltg', templateParams, process.env.REACT_APP_USER_ID)
       .then((result) => {
           console.log(result.text);
       }, (error) => {
