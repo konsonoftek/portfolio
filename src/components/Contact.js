@@ -63,6 +63,7 @@ const Form = styled.form`
 
 const Contact = () => {
   const [data, setData] = useState({ name: '', email: '', subject:'', message: ''});
+  const userID = process.env.REACT_APP_USER_ID;
   
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -89,7 +90,7 @@ const Contact = () => {
       subject: data.subject,
       message: data.message
     }
-      emailjs.send('gmail', 'template_f6onltg', templateParams, process.env.REACT_APP_USER_ID)
+      emailjs.send('gmail', 'template_f6onltg', templateParams, userID)
       .then((result) => {
           console.log(result.text);
       }, (error) => {
