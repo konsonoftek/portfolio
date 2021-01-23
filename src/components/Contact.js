@@ -113,7 +113,8 @@ const Contact = () => {
             }, 2000)
         }
     }).catch( (err) => {
-        // console.log(err.response.status)
+      console.log(err.response.status);
+      console.log(data);
         setData({
             ...data,
             buttonText: 'Failed to send',
