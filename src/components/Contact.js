@@ -90,7 +90,7 @@ const Contact = () => {
       subject: data.subject,
       message: data.message
     }
-      emailjs.send(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID, templateParams)
+      emailjs.send(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID, templateParams, 'user_C8s5kqzohKIEtX9F9viGX')
       .then((result) => {
           console.log(result.text);
       }, (error) => {
