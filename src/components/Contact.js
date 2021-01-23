@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import emailjs, { init }  from 'emailjs-com';
+import emailjs from 'emailjs-com';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
-init("user_C8s5kqzohKIEtX9F9viGX");
 
 const ContactStyles = styled.div`
   height: 100vh;
@@ -90,7 +89,7 @@ const Contact = () => {
       subject: data.subject,
       message: data.message
     }
-      emailjs.send(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID, templateParams, 'user_C8s5kqzohKIEtX9F9viGX')
+      emailjs.send('gmail', 'template_f6onltg', templateParams, 'user_C8s5kqzohKIEtX9F9viGX')
       .then((result) => {
           console.log(result.text);
       }, (error) => {
