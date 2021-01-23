@@ -20,7 +20,7 @@ exports.handler = function(event, context, callback) {
   const message = data.message; 
 
   transport.sendMail({
-    from: email,
+    from: "konsonoftek@gmail.com",
     to: process.env.REACT_APP_EMAIL,
     subject: subject,
     html: `
