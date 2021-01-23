@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import emailjs from 'emailjs-com';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
@@ -61,7 +61,7 @@ const Form = styled.form`
 `;
 
 const Contact = () => {
-  const [data, setData] = useState({ name: '', email: '', subject:'', message: '', sent: false, buttonText: 'Submit', err: '' });
+  const [data, setData] = useState({ name: '', email: '', subject:'', message: ''});
   
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -75,52 +75,26 @@ const Contact = () => {
       name: '',
       email: '',
       subject: '',
-      message: '',
-      sent: false,
-      buttonText: 'Submit',
-      err: ''
+      message: ''
   });
   }
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    setData({
-      ...data,
-      buttonText: 'Sending...'
-  })
-
-    axios.post('/api/email', data)
-    .then(res => {
-        if(res.data.result !=='success') {
-            setData({
-                ...data,
-                buttonText: 'Failed to send',
-                sent: false,
-                err: 'fail'
-            })
-            setTimeout(() => {
-                resetForm()
-            }, 6000)
-        } else {
-            setData({
-                ...data,
-                sent: true,
-                buttonText: 'Sent',
-                err: 'success'
-            })
-            setTimeout(() => {
-                resetForm();
-            }, 2000)
-        }
-    }).catch( (err) => {
-      console.log(err.response.status);
-      console.log(data);
-        setData({
-            ...data,
-            buttonText: 'Failed to send',
-            err: 'fail'
-        })
-    })
+    const templateParams = {
+      me: 'Konstantin',
+      name: data.name,
+      email: data.email,
+      subject: data.subject,
+      message: data.message
+    }
+      emailjs.send(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID, templateParams, process.env.REACT_APP_USER_ID)
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+    resetForm();
   }
   return (
     <ContactStyles>
@@ -160,7 +134,7 @@ const Contact = () => {
           backgroundColor: "#01A89C",
         }}
         >
-          {data.buttonText}
+          Submit
           </motion.button>
       </Form>
     </ContactStyles>
