@@ -7,6 +7,7 @@ const ProjectsStyles = styled.div`
   flex-direction:column;
   justify-content:center;
   align-items:center;
+  width:100vw;
   
   p {
     font-size:3rem;

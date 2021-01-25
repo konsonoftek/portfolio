@@ -3,6 +3,7 @@ import Profile from '../assets/profile.jpg'
 
 const AboutStyles = styled.div`
   height: 100vh;
+  max-width:100vw;
   display:grid;
   grid-template-columns:1fr 1fr;
   grid-gap:6rem;
@@ -15,7 +16,7 @@ const AboutStyles = styled.div`
   }
 `;
 const ProfilePicture = styled.img`
-  width:400px;
+  width:420px;
   height:500px;
   grid-column:2;
   justify-self:flex-start;
@@ -24,7 +25,7 @@ const ProfilePicture = styled.img`
   @media(max-width:1068px){
     grid-row:1;
     grid-column:1;
-    width:280px;
+    width:290px;
     height:340px;
     justify-self:center;
   }
