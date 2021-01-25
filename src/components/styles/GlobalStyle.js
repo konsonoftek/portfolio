@@ -34,6 +34,7 @@ body {
   text-rendering: optimizeSpeed;
   font-size:10px;
   line-height:1.5;
+  overflow-x:none;
 }
 
   @font-face {
