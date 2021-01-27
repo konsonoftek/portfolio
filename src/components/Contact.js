@@ -116,10 +116,11 @@ const Contact = () => {
     }
       emailjs.send('gmail', 'template_f6onltg', templateParams, userID)
       .then((result) => {
-          createNotification('success');
+          console.log(result.text);
       }, (error) => {
           console.log(error.text);
       });
+    createNotification('success');
     resetForm();
   }
   return (
