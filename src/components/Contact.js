@@ -2,8 +2,8 @@ import { useState } from 'react';
 import emailjs from 'emailjs-com';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { NotificationContainer, NotificationManager } from 'react-notifications';
-import 'react-notifications/lib/notifications.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const ContactStyles = styled.div`
@@ -64,31 +64,12 @@ const Form = styled.form`
 `;
 
 const Contact = () => {
-  const createNotification = (type) => {
-    return () => {
-      // eslint-disable-next-line default-case
-      switch (type) {
-        case 'info':
-          NotificationManager.info('Info message');
-          break;
-        case 'success':
-          NotificationManager.success('Successfully sent an email', 'Contact Email');
-          break;
-        case 'warning':
-          NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
-          break;
-        case 'error':
-          NotificationManager.error('Error message', 'Click me!', 5000, () => {
-            alert('callback');
-          });
-          break;
-      }
-    };
-  };
 
   const [data, setData] = useState({ name: '', email: '', subject:'', message: ''});
   const userID = process.env.REACT_APP_USER;
   
+  const notify = () => toast("Email sent succefully!");
+
   const handleChange = (e) => {
     const { name, value } = e.target
     setData({
@@ -116,11 +97,11 @@ const Contact = () => {
     }
       emailjs.send('gmail', 'template_f6onltg', templateParams, userID)
       .then((result) => {
-          console.log(result.text);
+        console.log(result.text);
+        notify();
       }, (error) => {
           console.log(error.text);
       });
-    createNotification('success');
     resetForm();
   }
   return (
@@ -164,7 +145,7 @@ const Contact = () => {
           Submit
           </motion.button>
       </Form>
-      <NotificationContainer />
+      <ToastContainer />
     </ContactStyles>
   );
 }
