@@ -2,7 +2,7 @@ import { useState } from 'react';
 import emailjs from 'emailjs-com';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { NotificationManager } from 'react-notifications';
+import {NotificationContainer, NotificationManager } from 'react-notifications';
 
 
 const ContactStyles = styled.div`
@@ -115,9 +115,7 @@ const Contact = () => {
     }
       emailjs.send('gmail', 'template_f6onltg', templateParams, userID)
       .then((result) => {
-        if (result === 200) {
           createNotification('success');
-          }
       }, (error) => {
           console.log(error.text);
       });
@@ -164,6 +162,7 @@ const Contact = () => {
           Submit
           </motion.button>
       </Form>
+      <NotificationContainer />
     </ContactStyles>
   );
 }
